@@ -2,28 +2,13 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+const usersRoutes = require("./routes/users");
+const logsMiddleWare = require("./middleware/logs");
 
-// app.METHOD(PATH, HANDLER);
-// app.method(path, handler);
+app.use(logsMiddleWare);
+app.use(express.json());
 
-app.use("/home", (req, res, next) => {
-  res.send("Hellow Ari Ganteng");
-});
-
-app.get("/getData", (req, res) => {
-  res.json({
-    nama: "Mulzahrian",
-    alamat: "Jakarta Selatan",
-    kampus: "binus",
-  });
-});
-
-app.post("/postData", (req, res) => {
-  res.send("Got a POST request");
-});
+app.use("/users", usersRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

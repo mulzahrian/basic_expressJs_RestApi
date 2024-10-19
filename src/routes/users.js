@@ -1,5 +1,6 @@
 const express = require("express");
 const userController = require("../controller/users");
+const mysql = require("mysql2");
 
 const router = express.Router();
 

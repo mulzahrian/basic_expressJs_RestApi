@@ -10,7 +10,7 @@ const getAllUser = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "Server Error!",
+      message: "Server Error",
       serverMessage: error,
     });
   }

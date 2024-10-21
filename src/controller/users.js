@@ -18,12 +18,18 @@ const getAllUser = async (req, res) => {
 
 const createNewUser = async (req, res) => {
   const bodyPayload = req.body;
+  if (!bodyPayload.nama || !bodyPayload.email || !bodyPayload.tempat) {
+    res.status(400).json({
+      message: "Bad Request!",
+      data: null,
+    });
+  }
   try {
     await usersModels.createNewUser(bodyPayload);
-    res.json({
+    res.status(201).json({
       message: "Create User Success!",
       data: bodyPayload,
-      status: 200,
+      status: 201,
     });
   } catch (error) {
     res.status(500).json({
